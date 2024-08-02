@@ -1,0 +1,46 @@
+name: Python-Hybrid-UI-API
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+  schedule:
+    - cron: '0 9 * * *'
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Build Docker image
+      run: docker build -t hybrid-ui-api:latest .
+
+    - name: Run tests in Docker container
+      run: docker run --name hybrid-ui-api-container -v ${{ github.workspace }}/allure-results:/app/allure-results hybrid-ui-api:latest pytest --alluredir=/app/allure-results
+
+    - name: Generate Allure report
+      run: |
+        echo "Downloading and installing Allure CLI..."
+        wget https://github.com/allure-framework/allure2/releases/download/2.13.9/allure-2.13.9.zip
+        unzip allure-2.13.9.zip -d /opt/
+        echo "Generating Allure report..."
+        /opt/allure-2.13.9/bin/allure generate ./allure-results -o ./allure-report
+
+    - name: Upload Allure report
+      uses: actions/upload-artifact@v3
+      with:
+        name: allure-report
+        path: ./allure-report
+
+    - name: Upload Allure results
+      uses: actions/upload-artifact@v3
+      with:
+        name: allure-results
+        path: ./allure-results

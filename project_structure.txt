@@ -1,0 +1,50 @@
+.
+├── Dockerfile
+├── README.md
+├── allure-results
+│   ├── 1a1f321d-0cdf-4824-ae46-8314ccda4fbb-result.json
+│   ├── 377c60c7-246e-4535-a058-c74e6b85ea84-container.json
+│   ├── 43fb2029-5ba4-4d37-b23b-75c5d9e4c424-attachment.txt
+│   ├── 502440a3-5d51-46d2-8ded-4142ffcc89b1-container.json
+│   ├── 5ca41b6c-cd5f-46fe-a525-ba7e8ce46898-container.json
+│   ├── 63b2a7d0-b0ab-4f79-9639-36edd6f69b9c-result.json
+│   ├── 6919e25c-1ce1-4812-8e42-b5754f3f021e-attachment.txt
+│   ├── 6f32acef-0f80-4c58-a167-e9d274330543-container.json
+│   ├── 8bc4fb10-dfbc-4cd5-a71a-9036643ed085-attachment.txt
+│   ├── 996f3db4-b7d4-4f1c-9b26-cd5be9d8aa59-result.json
+│   ├── b8d7b331-c580-48e4-84b0-39dc104c91c7-container.json
+│   ├── c062d0ed-8953-417e-a5fb-fcdc49ac7302-attachment.txt
+│   ├── d00861fa-672f-43ef-9b9e-0cd404379756-result.json
+│   ├── d1450ead-b591-4a26-aea5-fae32fcb0701-attachment.txt
+│   └── e524f566-70cb-4758-9612-dc8865750875-attachment.txt
+├── project_structure.txt
+├── pytest.ini
+├── requirements.txt
+└── tests
+    ├── __pycache__
+    │   └── conftest.cpython-312-pytest-8.3.1.pyc
+    ├── capabilities
+    │   ├── __pycache__
+    │   │   ├── android_capabilities.cpython-312.pyc
+    │   │   └── ios_capabilities.cpython-312.pyc
+    │   ├── android_capabilities.py
+    │   └── ios_capabilities.py
+    ├── conftest.py
+    ├── end_to_end
+    │   ├── __pycache__
+    │   │   └── test_homepage.cpython-312-pytest-8.3.1.pyc
+    │   └── test_homepage.py
+    ├── integration
+    │   ├── __init__.py
+    │   ├── __pycache__
+    │   │   ├── __init__.cpython-312.pyc
+    │   │   ├── test_petstore_api.cpython-312-pytest-8.3.1.pyc
+    │   │   └── test_user__info.cpython-312-pytest-8.3.1.pyc
+    │   ├── test_petstore_api.py
+    │   └── test_user__info.py
+    └── src
+        ├── __pycache__
+        │   └── user_info.cpython-312.pyc
+        └── user_info.py
+
+12 directories, 36 files
