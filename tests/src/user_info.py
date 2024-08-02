@@ -67,3 +67,18 @@ class User:
                 f"address={self._address}, zipcode={self._zipcode}, "
                 f"educationlevel={self._educationlevel}, userid={self._id}, "
                 f"db_id={self._db_id}, rawjson={self._rawjson})")
+
+
+def dict_to_model(model_class, data_dict):
+    """ Convert a dictionary to an instance of the given model class. """
+    model_args = {
+        'name': data_dict.get('name'),
+        'age': data_dict.get('age'),
+        'gender': data_dict.get('gender'),
+        'address': data_dict.get('address'),
+        'zipcode': data_dict.get('zipcode'),
+        'educationlevel': data_dict.get('educationlevel'),
+        'userid': data_dict.get('id'),  
+        'rawjson': json.dumps(data_dict)
+        }
+    return model_class(**model_args)
