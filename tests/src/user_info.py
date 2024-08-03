@@ -1,4 +1,5 @@
 import json
+from faker import Faker
 
 class User:
     def __init__(self, name, age, gender, address, zipcode, educationlevel, userid, rawjson, db_id=None):
@@ -82,3 +83,16 @@ def dict_to_model(model_class, data_dict):
         'rawjson': json.dumps(data_dict)
         }
     return model_class(**model_args)
+
+def generate_random_user():
+
+    fake = Faker()
+
+    return {
+        "name": fake.name(),
+        "age": str(fake.random_int(min=18, max=90)),
+        "gender": fake.random_element(elements=("male", "female", "other")),
+        "address": fake.address(),
+        "zipcode": fake.zipcode(),
+        "educationlevel": fake.random_element(elements=("high school", "associate", "bachelor", "master", "doctorate"))
+    }

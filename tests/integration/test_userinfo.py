@@ -1,12 +1,29 @@
 import pytest
 from src.user_info import User
 from src.user_info import dict_to_model
+from src.user_info import generate_random_user
 import requests
 import json
 
 import pytest
 from unittest.mock import MagicMock
 
+
+@pytest.mark.integration
+def test_create_random_user(api_client, logger):
+    user_data = generate_random_user()
+    response = api_client.post("https://66a5dbb423b29e17a1a11afc.mockapi.io/v1/users", json=user_data)
+    response_json = response.json()
+    assert response.status_code == 201
+    logger.info(f"Created User: {response_json}")
+
+    created_user = dict_to_model(User, response_json)
+    assert created_user.name == user_data['name']
+    assert created_user.age == user_data['age']
+    assert created_user.gender == user_data['gender']
+    assert created_user.address == user_data['address']
+    assert created_user.zipcode == user_data['zipcode']
+    assert created_user.educationlevel == user_data['educationlevel']
 
 @pytest.mark.integration
 def test_get_all_users_save_db(api_client, logger, save_users_to_db):
