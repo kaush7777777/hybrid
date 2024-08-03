@@ -80,7 +80,7 @@ def test_get_all_users(api_client, logger):
 
 
 @pytest.mark.integration
-def test_get_user_by_id(api_client, logger, userid=1003):
+def test_get_user_by_id(api_client, logger, userid=1):
  
     response = api_client.get("https://66a5dbb423b29e17a1a11afc.mockapi.io/v1/users/"+str(userid))
     response_json = response.json()
