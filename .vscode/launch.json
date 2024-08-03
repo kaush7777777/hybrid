@@ -1,0 +1,20 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Python: Debug Pytest in .venv",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}/.venv/bin/pytest",  // For Windows, use .venv/Scripts/pytest
+            "console": "integratedTerminal",
+            "justMyCode": false,
+            "env": {
+                "PYTHONPATH": "${workspaceFolder}/src"
+            },
+            "args": [
+                "tests",  // Or specify the specific test file or folder
+                "--alluredir=./allure-results"
+            ]
+        }
+    ]
+}
