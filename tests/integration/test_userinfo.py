@@ -63,7 +63,7 @@ def test_get_all_users_empty_response(api_client, logger):
 
 @pytest.mark.integration
 def test_get_all_users_missing_fields(api_client, logger):
-    incomplete_user_data = [{"id": "1", "email": "test@example.com"}]  # Missing 'name' field
+    incomplete_user_data = [{"id": "1", "email": "test@abc.com"}]  # Missing 'name' field
     api_client.get = MagicMock(return_value=MagicMock(status_code=200, json=lambda: incomplete_user_data))
     response = api_client.get(f"{api_client.base_url}/users")
     response_json = response.json()
