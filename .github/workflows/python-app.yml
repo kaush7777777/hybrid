@@ -23,7 +23,7 @@ jobs:
       run: docker build -t hybrid-ui-api:latest .
 
     - name: Run tests in Docker container
-      run: docker run --name hybrid-ui-api-container -v ${{ github.workspace }}/allure-results:/app/allure-results hybrid-ui-api:latest pytest --alluredir=/app/allure-results
+      run: docker run --name hybrid-ui-api-container -v ${{ github.workspace }}/allure-results:/app/allure-results hybrid-ui-api:latest pytest --env=staging --alluredir=/app/allure-results
 
     - name: Generate Allure report
       run: |
