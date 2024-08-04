@@ -1,11 +1,8 @@
-
 import pytest
 import logging
 from playwright.sync_api import sync_playwright
 import requests
-import json
 import sqlite3
-from src.user_info import User
 
 def setup_logging():
     logging.basicConfig(
@@ -37,17 +34,6 @@ def playwright_browser():
         browser.close()
 
 @pytest.fixture(scope="function")
-def api_client(env):
-    base_urls = {
-        "staging": "https://petstore.swagger.io/v2",
-        "sandbox": "https://sandbox-petstore.swagger.io/v2",
-        "production": "https://petstore.swagger.io/v2"
-    }
-    client = requests.Session()
-    client.base_url = base_urls[env]
-    return client
-
-@pytest.fixture(scope="function")
 def home_page(playwright_browser, env):
     urls = {
         "staging": "https://openweathermap.org/",
@@ -60,8 +46,19 @@ def home_page(playwright_browser, env):
     page.close()
 
 @pytest.fixture(scope="function")
+def api_client(env):
+    base_urls = {
+        "staging": "https://66a5dbb423b29e17a1a11afc.mockapi.io/v1",
+        "sandbox": "https://sandbox-api.example.com/v1",
+        "production": "https://production-api.example.com/v1"
+    }
+    client = requests.Session()
+    client.base_url = base_urls[env]
+    return client
+
+@pytest.fixture(scope="function")
 def setup_db():
-    """ Fixture to setup database connection and schema. """
+    """Fixture to setup database connection and schema."""
     conn = sqlite3.connect('ckdb.db')
     cursor = conn.cursor()
     cursor.execute('''
@@ -83,7 +80,7 @@ def setup_db():
 
 @pytest.fixture(scope="function")
 def save_users_to_db(setup_db):
-    """ Fixture to save users to the database. """
+    """Fixture to save users to the database."""
     conn = setup_db
     cursor = conn.cursor()
 
