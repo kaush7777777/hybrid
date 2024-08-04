@@ -5,7 +5,7 @@ Author: Charitha Kaushalya Jayasinghe
 
 ## Project Overview
 
-This project performs end-to-end and integration testing UI pytest and Playwright.
+This project performs end-to-end and integration testing using pytest and Playwright.
 
 
 ### Prerequisites
