@@ -5,7 +5,7 @@ Author: Charitha Kaushalya Jayasinghe
 
 ## Project Overview
 
-This project performs end-to-end and integration testing for a hybrid UI-API system using `pytest` and Playwright.
+This project performs end-to-end and integration testing UI pytest and Playwright.
 
 
 ### Prerequisites
