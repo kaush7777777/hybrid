@@ -6,7 +6,7 @@ on:
   pull_request:
     branches: [ "develop" ]
   schedule:
-  - cron: '0 */6 * * *'
+    - cron: '0 */6 * * *'
 
 permissions:
   contents: read
@@ -17,21 +17,25 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v2
 
     - name: Build Docker image
       run: docker build -t hybrid-ui-api:latest .
 
     - name: Run tests in Docker container
-      run: docker run --name hybrid-ui-api-container -v ${{ github.workspace }}/allure-results:/app/allure-results hybrid-ui-api:latest pytest --alluredir=/app/allure-results
+      run: |
+        docker run --name hybrid-ui-api-container -v ${{ github.workspace }}/allure-results:/app/allure-results hybrid-ui-api:latest pytest --env=staging --alluredir=/app/allure-results
+        docker cp hybrid-ui-api-container:/app/allure-results ${{ github.workspace }}/allure-results
+        docker rm hybrid-ui-api-container
 
     - name: Generate Allure report
       run: |
         echo "Downloading and installing Allure CLI..."
         wget https://github.com/allure-framework/allure2/releases/download/2.13.9/allure-2.13.9.zip
         unzip allure-2.13.9.zip -d /opt/
+        export PATH=$PATH:/opt/allure-2.13.9/bin
         echo "Generating Allure report..."
-        /opt/allure-2.13.9/bin/allure generate ./allure-results -o ./allure-report
+        allure generate ./allure-results -o ./allure-report
 
     - name: Upload Allure report
       uses: actions/upload-artifact@v3
