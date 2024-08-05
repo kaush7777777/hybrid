@@ -26,3 +26,6 @@ This project performs end-to-end and integration testing using pytest and Playwr
 pytest
 pytest -m integration
 pytest -m end_to_end
+
+### view Test Reports
+allure serve allure-results
