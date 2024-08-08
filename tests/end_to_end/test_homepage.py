@@ -4,7 +4,7 @@ import pytest
 def test_homepage(home_page, env):
     page = home_page
 
-    assert page.title() == "Current weather and forecast - OpenWeatherMap", "Title is not as expected"
+    assert page.title() == "Current weather and forecast", "Title is not as expected"
     page.click('button:has-text("Accept")')  # Example button click, adjust the selector as needed
     page.click('a:has-text("Sign in")')
     page.get_by_label("Email").fill("charith.sliit@gmail.com")
